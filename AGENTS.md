@@ -27,6 +27,6 @@ Use Vitest and Vue Test Utils when the test dependencies are configured. Name te
 
 ## Commit & Pull Request Guidelines
 
-There is no Git history from which to infer an existing convention. Use concise, imperative commit subjects, optionally following Conventional Commits, such as `feat: add login validation` or `fix: preserve session after restart`. Keep commits scoped to one logical change.
+Use `有新的改动` as the commit message for every commit in this repository. Keep commits scoped to one logical change.
 
 Pull requests should include a clear summary, testing evidence, and links to relevant issues. Add screenshots or recordings for visible UI changes. Call out configuration changes, migrations, or known follow-up work, and request review only after local checks pass.
