@@ -42,6 +42,16 @@ const essentialLinks = [
             </q-item-section>
           </q-item>
 
+          <q-item clickable :to="{ name: 'task102' }">
+            <q-item-section avatar>
+              <q-icon name="style" />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>Reactive 样式</q-item-label>
+              <q-item-label caption>Chapter 102 · Task 102</q-item-label>
+            </q-item-section>
+          </q-item>
+
           <q-item-label header>Essential Links</q-item-label>
           <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
         </q-list>
