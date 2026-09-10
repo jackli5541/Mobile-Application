@@ -1,0 +1,26 @@
+{
+  "name": "mobile-app-development",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "quasar dev",
+    "build": "quasar build",
+    "preview": "quasar serve dist/spa"
+  },
+  "dependencies": {
+    "@quasar/extras": "latest",
+    "quasar": "latest",
+    "vue": "latest"
+  },
+  "devDependencies": {
+    "@quasar/app-vite": "^2.2.0",
+    "@quasar/cli": "latest",
+    "@quasar/vite-plugin": "latest",
+    "@types/node": "latest",
+    "@vitejs/plugin-vue": "latest",
+    "typescript": "^5.8.3",
+    "vite": "latest",
+    "vue-tsc": "latest"
+  }
+}
