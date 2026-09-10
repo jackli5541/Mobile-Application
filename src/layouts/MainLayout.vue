@@ -32,26 +32,6 @@ const essentialLinks = [
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-scroll-area class="fit">
         <q-list padding>
-          <q-item clickable :to="{ name: 'about-me' }">
-            <q-item-section avatar>
-              <q-icon name="person" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>自我介绍</q-item-label>
-              <q-item-label caption>Chapter 001</q-item-label>
-            </q-item-section>
-          </q-item>
-
-          <q-item clickable :to="{ name: 'quasar-basics' }">
-            <q-item-section avatar>
-              <q-icon name="widgets" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>Quasar 基础与交互</q-item-label>
-              <q-item-label caption>Chapter 001</q-item-label>
-            </q-item-section>
-          </q-item>
-
           <q-item clickable :to="{ name: 'task101' }">
             <q-item-section avatar>
               <q-icon name="calculate" />
