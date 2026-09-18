@@ -1,6 +1,7 @@
+<script setup lang="ts">
+import Task103Page from 'pages/chapter103/Task103Page.vue'
+</script>
+
 <template>
-  <q-page class="column flex-center q-pa-md">
-    <div class="text-h4 q-mb-md">Welcome to Quasar!</div>
-    <div class="text-subtitle1">最棒的 Vue.js 框架</div>
-  </q-page>
+  <Task103Page />
 </template>
