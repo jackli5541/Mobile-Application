@@ -24,6 +24,11 @@ const routes = [
         name: 'task104',
         component: () => import('pages/chapter104/Task104Page.vue'),
       },
+      {
+        path: 'chapter105/task105',
+        name: 'task105',
+        component: () => import('pages/chapter105/Task105Page.vue'),
+      },
     ],
   },
 ]
