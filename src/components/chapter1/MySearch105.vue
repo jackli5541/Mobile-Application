@@ -33,6 +33,11 @@ function search() {
   emit('update:modelValue', draftValue.value)
   emit('onSearch', draftValue.value)
 }
+
+function clearSearch() {
+  draftValue.value = ''
+  search()
+}
 </script>
 
 <template>
@@ -46,6 +51,7 @@ function search() {
     color="primary"
     class="search-field"
     @keyup.enter="search"
+    @clear="clearSearch"
   >
     <template #prepend>
       <q-icon :name="beforeIcon" />

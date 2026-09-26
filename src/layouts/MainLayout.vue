@@ -1,8 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+import { useRoute } from 'vue-router'
 import EssentialLink from 'components/EssentialLink.vue'
 
+const route = useRoute()
 const leftDrawerOpen = ref(false)
+const pageTitle = computed(() =>
+  route.path === '/' || route.name === 'task106' ? 'Customized List' : 'Quasar App',
+)
 const essentialLinks = [
   { title: 'Docs', caption: 'quasar.dev', icon: 'school', link: 'https://quasar.dev' },
   { title: 'Github', caption: 'github.com/quasarframework/quasar', icon: 'code', link: 'https://github.com/quasarframework/quasar' },
@@ -25,7 +30,7 @@ const essentialLinks = [
           aria-label="Menu"
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
-        <q-toolbar-title>Quasar App</q-toolbar-title>
+        <q-toolbar-title>{{ pageTitle }}</q-toolbar-title>
       </q-toolbar>
     </q-header>
 
@@ -79,6 +84,16 @@ const essentialLinks = [
             <q-item-section>
               <q-item-label>自定义搜索组件</q-item-label>
               <q-item-label caption>Chapter 105 · Task 105</q-item-label>
+            </q-item-section>
+          </q-item>
+
+          <q-item clickable :to="{ name: 'task106' }">
+            <q-item-section avatar>
+              <q-icon name="contacts" />
+            </q-item-section>
+            <q-item-section>
+              <q-item-label>自定义联系人列表</q-item-label>
+              <q-item-label caption>Chapter 106 · Task 106</q-item-label>
             </q-item-section>
           </q-item>
 

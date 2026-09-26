@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Task105Page from 'pages/chapter105/Task105Page.vue'
+import Task106Page from 'pages/chapter106/Task106Page.vue'
 </script>
 
 <template>
-  <Task105Page />
+  <Task106Page />
 </template>
