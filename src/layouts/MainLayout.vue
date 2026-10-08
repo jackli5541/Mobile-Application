@@ -6,7 +6,7 @@ import EssentialLink from 'components/EssentialLink.vue'
 const route = useRoute()
 const leftDrawerOpen = ref(false)
 const pageTitle = computed(() =>
-  route.path === '/' || route.name === 'task106' ? 'Customized List' : 'Quasar App',
+  route.name === 'task107' ? 'To use slot' : route.path === '/' || route.name === 'task106' ? 'Customized List' : 'Quasar App',
 )
 const essentialLinks = [
   { title: 'Docs', caption: 'quasar.dev', icon: 'school', link: 'https://quasar.dev' },
@@ -95,6 +95,10 @@ const essentialLinks = [
               <q-item-label>自定义联系人列表</q-item-label>
               <q-item-label caption>Chapter 106 · Task 106</q-item-label>
             </q-item-section>
+          </q-item>
+          <q-item clickable :to="{ name: 'task107' }">
+            <q-item-section avatar><q-icon name="view_list" /></q-item-section>
+            <q-item-section><q-item-label>插槽联系人项</q-item-label><q-item-label caption>Chapter 107 · Task 107</q-item-label></q-item-section>
           </q-item>
 
           <q-item-label header>Essential Links</q-item-label>
