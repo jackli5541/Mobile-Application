@@ -3,7 +3,17 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
+      {
+        path: 'chapter201/task201',
+        name: 'task201',
+        component: () => import('../views/chapter2/Task201Page.vue'),
+      },
       { path: '', component: () => import('pages/IndexPage.vue') },
+      {
+        path: 'big-task01',
+        name: 'bigTask01',
+        component: () => import('../views/bigTasks/BigTask01.vue'),
+      },
       {
         path: 'chapter101/task101',
         name: 'task101',

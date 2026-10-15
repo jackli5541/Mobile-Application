@@ -31,7 +31,7 @@ function changeStyle() {
   const currentColorIndex = buttonColors.indexOf(styleReactive.color)
   const nextColorIndex = (currentColorIndex + 1) % buttonColors.length
 
-  styleReactive.color = buttonColors[nextColorIndex]
+  styleReactive.color = buttonColors[nextColorIndex] ?? 'info'
   changeShape()
 }
 

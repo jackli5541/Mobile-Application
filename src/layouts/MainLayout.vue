@@ -6,7 +6,7 @@ import EssentialLink from 'components/EssentialLink.vue'
 const route = useRoute()
 const leftDrawerOpen = ref(false)
 const pageTitle = computed(() =>
-  route.name === 'task108' ? 'Scoped slot' : route.name === 'task107' ? 'To use slot' : route.path === '/' || route.name === 'task106' ? 'Customized List' : 'Quasar App',
+  route.name === 'task201' ? 'Row and Column for flex layout' : route.name === 'bigTask01' ? '大实验一 · 文章搜索与组件封装' : route.name === 'task108' ? 'Scoped slot' : route.name === 'task107' ? 'To use slot' : route.path === '/' || route.name === 'task106' ? 'Customized List' : 'Quasar App',
 )
 const essentialLinks = [
   { title: 'Docs', caption: 'quasar.dev', icon: 'school', link: 'https://quasar.dev' },
@@ -37,6 +37,13 @@ const essentialLinks = [
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
       <q-scroll-area class="fit">
         <q-list padding>
+          <q-item clickable :to="{ name: 'bigTask01' }">
+            <q-item-section avatar><q-icon name="article" /></q-item-section>
+            <q-item-section>
+              <q-item-label>大实验一：文章搜索与组件封装</q-item-label>
+              <q-item-label caption>Big Task 01 · 李亚鸿</q-item-label>
+            </q-item-section>
+          </q-item>
           <q-item clickable :to="{ name: 'task101' }">
             <q-item-section avatar>
               <q-icon name="calculate" />
@@ -106,6 +113,13 @@ const essentialLinks = [
             <q-item-section>
               <q-item-label>作用域插槽联系人列表</q-item-label>
               <q-item-label caption>Chapter 108 · Task 108</q-item-label>
+            </q-item-section>
+          </q-item>
+          <q-item clickable :to="{ name: 'task201' }">
+            <q-item-section avatar><q-icon name="view_module" /></q-item-section>
+            <q-item-section>
+              <q-item-label>Flex 行列与换行布局</q-item-label>
+              <q-item-label caption>Chapter 201 · Task 201</q-item-label>
             </q-item-section>
           </q-item>
           <q-item-label header>Essential Links</q-item-label>
