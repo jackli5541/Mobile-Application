@@ -4,6 +4,11 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       {
+        path: 'chapter204/task204',
+        name: 'task204',
+        component: () => import('../views/chapter2/Task204Page.vue'),
+      },
+      {
         path: 'chapter202/task202',
         name: 'task202',
         component: () => import('../views/chapter2/Task202Page.vue'),

@@ -6,6 +6,7 @@ import EssentialLink from 'components/EssentialLink.vue'
 const route = useRoute()
 const leftDrawerOpen = ref(false)
 const pageTitle = computed(() =>
+  route.name === 'task204' ? 'Radio and Checkbox' :
   route.name === 'task203' ? 'Card with responsive flex grid' : route.name === 'task202' ? 'Alignments with justify and items' :
   route.name === 'task201' ? 'Row and Column for flex layout' : route.name === 'bigTask01' ? '大实验一 · 文章搜索与组件封装' : route.name === 'task108' ? 'Scoped slot' : route.name === 'task107' ? 'To use slot' : route.path === '/' || route.name === 'task106' ? 'Customized List' : 'Quasar App',
 )
@@ -133,6 +134,13 @@ const essentialLinks = [
           <q-item clickable :to="{ name: 'task203' }">
             <q-item-section avatar><q-icon name="dashboard" /></q-item-section>
             <q-item-section><q-item-label>QCard 响应式弹性网格</q-item-label><q-item-label caption>Chapter 203 · Task 203</q-item-label></q-item-section>
+          </q-item>
+          <q-item clickable :to="{ name: 'task204' }">
+            <q-item-section avatar><q-icon name="radio_button_checked" /></q-item-section>
+            <q-item-section>
+              <q-item-label>单选框与多选框</q-item-label>
+              <q-item-label caption>Chapter 204 · Task 204</q-item-label>
+            </q-item-section>
           </q-item>
           <q-item-label header>Essential Links</q-item-label>
           <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
