@@ -9,6 +9,21 @@ const routes = [
         component: () => import('../views/chapter2/Task204Page.vue'),
       },
       {
+        path: 'chapter205/task205',
+        name: 'task205',
+        component: () => import('../views/chapter2/Task205Page.vue'),
+      },
+      {
+        path: 'chapter206/task206',
+        name: 'task206',
+        component: () => import('../views/chapter2/Task206Page.vue'),
+      },
+      {
+        path: 'chapter207/task207',
+        name: 'task207',
+        component: () => import('../views/chapter2/Task207Page.vue'),
+      },
+      {
         path: 'chapter202/task202',
         name: 'task202',
         component: () => import('../views/chapter2/Task202Page.vue'),
