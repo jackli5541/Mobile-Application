@@ -24,6 +24,12 @@ const routes = [
         component: () => import('../views/chapter2/Task207Page.vue'),
       },
       {
+        path: 'my-task301',
+        name: 'task301',
+        component: () => import('../views/chapter3/Task301Page.vue'),
+        meta: { title: 'To use vue-router' },
+      },
+      {
         path: 'chapter202/task202',
         name: 'task202',
         component: () => import('../views/chapter2/Task202Page.vue'),
@@ -34,18 +40,24 @@ const routes = [
         component: () => import('../views/chapter2/Task203Page.vue'),
       },
       {
-        path: 'chapter201/task201',
+        path: 'my-task201',
+        alias: 'chapter201/task201',
         name: 'task201',
         component: () => import('../views/chapter2/Task201Page.vue'),
       },
-      { path: '', component: () => import('pages/IndexPage.vue') },
+      {
+        path: '',
+        component: () => import('../views/chapter3/Task301Page.vue'),
+        meta: { title: 'To use vue-router' },
+      },
       {
         path: 'big-task01',
         name: 'bigTask01',
         component: () => import('../views/bigTasks/BigTask01.vue'),
       },
       {
-        path: 'chapter101/task101',
+        path: 'my-task101',
+        alias: 'chapter101/task101',
         name: 'task101',
         component: () => import('pages/chapter101/Task101Page.vue'),
       },
@@ -85,6 +97,10 @@ const routes = [
         component: () => import('pages/chapter108/Task108Page.vue'),
       },
     ],
+  },
+  {
+    path: '/:catchAll(.*)*',
+    component: () => import('../views/ErrorNotFound.vue'),
   },
 ]
 

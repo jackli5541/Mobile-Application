@@ -1,170 +1,108 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { reactive, ref, watch } from 'vue'
+import { useQuasar } from 'quasar'
 import { useRoute } from 'vue-router'
 import EssentialLink from 'components/EssentialLink.vue'
 
+defineOptions({ name: 'MainLayout' })
+
+type Link = { title: string; caption: string; icon: string; link: string }
+const $q = useQuasar()
 const route = useRoute()
 const leftDrawerOpen = ref(false)
-const pageTitle = computed(() =>
-  route.name === 'task207' ? '可编辑数据表格 · Task 207' : route.name === 'task206' ? '列表与弹窗代理 · Task 206' : route.name === 'task205' ? '列表与菜单 · Task 205' : route.name === 'task204' ? 'Radio and Checkbox' :
-  route.name === 'task203' ? 'Card with responsive flex grid' : route.name === 'task202' ? 'Alignments with justify and items' :
-  route.name === 'task201' ? 'Row and Column for flex layout' : route.name === 'bigTask01' ? '大实验一 · 文章搜索与组件封装' : route.name === 'task108' ? 'Scoped slot' : route.name === 'task107' ? 'To use slot' : route.path === '/' || route.name === 'task106' ? 'Customized List' : 'Quasar App',
-)
-const essentialLinks = [
-  { title: 'Docs', caption: 'quasar.dev', icon: 'school', link: 'https://quasar.dev' },
-  { title: 'Github', caption: 'github.com/quasarframework/quasar', icon: 'code', link: 'https://github.com/quasarframework/quasar' },
-  { title: 'Forum', caption: 'forum.quasar.dev', icon: 'forum', link: 'https://forum.quasar.dev' },
-  { title: 'Twitter', caption: '@QuasarFramework', icon: 'rss_feed', link: 'https://twitter.com/quasarframework' },
-  { title: 'Facebook', caption: '@QuasarFramework', icon: 'public', link: 'https://facebook.com/quasarframework' },
-  { title: 'Discord Chat Channel', caption: 'chat.quasar.dev', icon: 'chat', link: 'https://chat.quasar.dev' },
+const caption = ref('Tcf 移动应用开发')
+
+const chap1Links: Link[] = [
+  { title: 'MyTask101', caption: 'Ref variable', icon: 'code', link: '/my-task101' },
+  { title: 'MyTask102', caption: 'Reactive style', icon: 'code', link: '/chapter102/task102' },
+  { title: 'MyTask103', caption: 'Computed filtering', icon: 'code', link: '/chapter103/task103' },
+  { title: 'MyTask104', caption: 'watchEffect contacts', icon: 'code', link: '/chapter104/task104' },
+  { title: 'MyTask105', caption: 'Custom search component', icon: 'code', link: '/chapter105/task105' },
+  { title: 'MyTask106', caption: 'Customized List', icon: 'code', link: '/chapter106/task106' },
+  { title: 'MyTask107', caption: 'To use slot', icon: 'code', link: '/chapter107/task107' },
+  { title: 'MyTask108', caption: 'Scoped slot', icon: 'code', link: '/chapter108/task108' },
 ]
+const chap2Links: Link[] = [
+  { title: 'MyTask201', caption: 'Row and Column for flex display', icon: 'code', link: '/my-task201' },
+  { title: 'MyTask202', caption: 'Alignments with justify and items', icon: 'code', link: '/chapter202/task202' },
+  { title: 'MyTask203', caption: 'Card with responsive flex grid', icon: 'code', link: '/chapter203/task203' },
+  { title: 'MyTask204', caption: 'Radio and Checkbox', icon: 'code', link: '/chapter204/task204' },
+  { title: 'MyTask205', caption: 'List with Menu', icon: 'code', link: '/chapter205/task205' },
+  { title: 'MyTask206', caption: 'List with Popup Proxy', icon: 'code', link: '/chapter206/task206' },
+  { title: 'MyTask207', caption: 'Editable table', icon: 'code', link: '/chapter207/task207' },
+]
+const chap3Links: Link[] = [
+  { title: 'MyTask301', caption: 'To use vue-router', icon: 'code', link: '/my-task301' },
+]
+const bigTaskLinks: Link[] = [
+  { title: 'BigTask01', caption: 'Reactive UI and Component Encapsulation', icon: 'code', link: '/big-task01' },
+]
+const chapterLinks = { chap1Links, chap2Links, chap3Links, bigTaskLinks }
+const isExpanded = reactive<Record<string, boolean>>({})
+for (const key in chapterLinks) {
+  isExpanded[key] = true
+}
+
+function findPathCaption(path: string) {
+  for (const links of Object.values(chapterLinks)) {
+    const link = links.find((item) => item.link === path)
+    if (link) return link.caption
+  }
+  return null
+}
+
+watch(() => route.path, () => {
+  const title = typeof route.meta.title === 'string' ? route.meta.title : null
+  caption.value = title ?? findPathCaption(route.path) ?? caption.value
+}, { immediate: true })
+
+function expandAll() {
+  for (const key of Object.keys(isExpanded)) isExpanded[key] = true
+}
+
+function shrinkAll() {
+  for (const key of Object.keys(isExpanded)) isExpanded[key] = false
+}
+
+function toggleLeftDrawer() {
+  leftDrawerOpen.value = !leftDrawerOpen.value
+}
+
 </script>
 
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+  <q-layout view="hHh Lpr lFf">
+    <q-header reveal elevated :class="$q.dark.isActive ? 'bg-dark text-white' : 'bg-primary text-white'">
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="leftDrawerOpen = !leftDrawerOpen"
-        />
-        <q-toolbar-title>{{ pageTitle }}</q-toolbar-title>
+        <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
+        <q-toolbar-title>{{ caption }}</q-toolbar-title>
+        <div>v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
-      <q-scroll-area class="fit">
-        <q-list padding>
-          <q-item clickable :to="{ name: 'bigTask01' }">
-            <q-item-section avatar><q-icon name="article" /></q-item-section>
-            <q-item-section>
-              <q-item-label>大实验一：文章搜索与组件封装</q-item-label>
-              <q-item-label caption>Big Task 01 · 李亚鸿</q-item-label>
-            </q-item-section>
-          </q-item>
-          <q-item clickable :to="{ name: 'task101' }">
-            <q-item-section avatar>
-              <q-icon name="calculate" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>Ref 计数器</q-item-label>
-              <q-item-label caption>Chapter 101 · Task 101</q-item-label>
-            </q-item-section>
-          </q-item>
-
-          <q-item clickable :to="{ name: 'task102' }">
-            <q-item-section avatar>
-              <q-icon name="style" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>Reactive 样式</q-item-label>
-              <q-item-label caption>Chapter 102 · Task 102</q-item-label>
-            </q-item-section>
-          </q-item>
-
-          <q-item clickable :to="{ name: 'task103' }">
-            <q-item-section avatar>
-              <q-icon name="search" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>Computed 数据筛选</q-item-label>
-              <q-item-label caption>Chapter 103 · Task 103</q-item-label>
-            </q-item-section>
-          </q-item>
-
-          <q-item clickable :to="{ name: 'task104' }">
-            <q-item-section avatar>
-              <q-icon name="manage_search" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>watchEffect 联系人筛选</q-item-label>
-              <q-item-label caption>Chapter 104 · Task 104</q-item-label>
-            </q-item-section>
-          </q-item>
-
-          <q-item clickable :to="{ name: 'task105' }">
-            <q-item-section avatar>
-              <q-icon name="tune" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>自定义搜索组件</q-item-label>
-              <q-item-label caption>Chapter 105 · Task 105</q-item-label>
-            </q-item-section>
-          </q-item>
-
-          <q-item clickable :to="{ name: 'task106' }">
-            <q-item-section avatar>
-              <q-icon name="contacts" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>自定义联系人列表</q-item-label>
-              <q-item-label caption>Chapter 106 · Task 106</q-item-label>
-            </q-item-section>
-          </q-item>
-          <q-item clickable :to="{ name: 'task107' }">
-            <q-item-section avatar><q-icon name="view_list" /></q-item-section>
-            <q-item-section><q-item-label>插槽联系人项</q-item-label><q-item-label caption>Chapter 107 · Task 107</q-item-label></q-item-section>
-          </q-item>
-
-          <q-item clickable :to="{ name: 'task108' }">
-            <q-item-section avatar><q-icon name="account_box" /></q-item-section>
-            <q-item-section>
-              <q-item-label>作用域插槽联系人列表</q-item-label>
-              <q-item-label caption>Chapter 108 · Task 108</q-item-label>
-            </q-item-section>
-          </q-item>
-          <q-item clickable :to="{ name: 'task201' }">
-            <q-item-section avatar><q-icon name="view_module" /></q-item-section>
-            <q-item-section>
-              <q-item-label>Flex 行列与换行布局</q-item-label>
-              <q-item-label caption>Chapter 201 · Task 201</q-item-label>
-            </q-item-section>
-          </q-item>
-          <q-item clickable :to="{ name: 'task202' }">
-            <q-item-section avatar><q-icon name="format_align_center" /></q-item-section>
-            <q-item-section>
-              <q-item-label>Flex 主轴、次轴与多行对齐</q-item-label>
-              <q-item-label caption>Chapter 202 · Task 202</q-item-label>
-            </q-item-section>
-          </q-item>
-          <q-item clickable :to="{ name: 'task203' }">
-            <q-item-section avatar><q-icon name="dashboard" /></q-item-section>
-            <q-item-section><q-item-label>QCard 响应式弹性网格</q-item-label><q-item-label caption>Chapter 203 · Task 203</q-item-label></q-item-section>
-          </q-item>
-          <q-item clickable :to="{ name: 'task204' }">
-            <q-item-section avatar><q-icon name="radio_button_checked" /></q-item-section>
-            <q-item-section>
-              <q-item-label>单选框与多选框</q-item-label>
-              <q-item-label caption>Chapter 204 · Task 204</q-item-label>
-            </q-item-section>
-          </q-item>
-          <q-item clickable :to="{ name: 'task205' }">
-            <q-item-section avatar><q-icon name="list_alt" /></q-item-section>
-            <q-item-section>
-              <q-item-label>列表与头像菜单</q-item-label>
-              <q-item-label caption>Chapter 205 · Task 205</q-item-label>
-            </q-item-section>
-          </q-item>
-          <q-item clickable :to="{ name: 'task206' }">
-            <q-item-section avatar><q-icon name="edit_note" /></q-item-section>
-            <q-item-section><q-item-label>列表与弹窗代理</q-item-label><q-item-label caption>Chapter 206 · Task 206</q-item-label></q-item-section>
-          </q-item>
-          <q-item clickable :to="{ name: 'task207' }">
-            <q-item-section avatar><q-icon name="table_view" /></q-item-section>
-            <q-item-section><q-item-label>可编辑数据表格</q-item-label><q-item-label caption>Chapter 207 · Task 207</q-item-label></q-item-section>
-          </q-item>
-          <q-item-label header>Essential Links</q-item-label>
-          <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
-        </q-list>
-      </q-scroll-area>
+      <q-list>
+        <q-item-label header>
+          <div class="row q-gutter-sm items-center">
+            <div class="col">Essential Links</div>
+            <div class="col-auto col-shrink row justify-end q-gutter-md">
+              <q-btn color="grey" icon="unfold_more" flat dense aria-label="展开全部" @click="expandAll" />
+              <q-btn color="grey" icon="unfold_less" flat dense aria-label="收起全部" @click="shrinkAll" />
+            </div>
+          </div>
+        </q-item-label>
+        <q-expansion-item v-for="(links, key) in chapterLinks" :key="key" v-model="isExpanded[key]" :label="key" icon="list" expand-separator>
+          <EssentialLink v-for="link in links" :key="link.title" v-bind="link" />
+        </q-expansion-item>
+      </q-list>
     </q-drawer>
 
-    <q-page-container>
-      <router-view />
+    <q-page-container class="container">
+      <router-view v-slot="{ Component }">
+        <keep-alive include="MyTask405">
+          <component :is="Component" />
+        </keep-alive>
+      </router-view>
     </q-page-container>
   </q-layout>
 </template>

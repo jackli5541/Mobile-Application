@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import { Quasar } from 'quasar'
+import { Quasar, Dark } from 'quasar'
 import langZhCn from 'quasar/lang/zh-CN'
 import iconSet from 'quasar/icon-set/material-icons'
 
@@ -13,6 +13,6 @@ createApp(App)
   .use(Quasar, {
     lang: langZhCn,
     iconSet,
-    plugins: {},
+    plugins: { Dark },
   })
   .mount('#app')

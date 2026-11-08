@@ -1,20 +1,19 @@
 <script setup lang="ts">
-defineProps<{
+const emit = defineEmits<{ onClick: [caption: string] }>()
+const props = withDefaults(defineProps<{
   title: string
   caption?: string
-  icon: string
-  link: string
-}>()
+  icon?: string
+  link?: string
+}>(), { caption: '', icon: '', link: '#' })
 </script>
 
 <template>
-  <q-item clickable tag="a" target="_blank" :href="link">
-    <q-item-section v-if="icon" avatar>
-      <q-icon :name="icon" />
-    </q-item-section>
+  <q-item clickable :to="props.link" @click="emit('onClick', props.caption)">
+    <q-item-section v-if="props.icon" avatar><q-icon :name="props.icon" /></q-item-section>
     <q-item-section>
-      <q-item-label>{{ title }}</q-item-label>
-      <q-item-label v-if="caption" caption>{{ caption }}</q-item-label>
+      <q-item-label>{{ props.title }}</q-item-label>
+      <q-item-label caption>{{ props.caption }}</q-item-label>
     </q-item-section>
   </q-item>
 </template>
