@@ -35,6 +35,7 @@ const chap3Links: Link[] = [
   { title: 'MyTask301', caption: 'To use vue-router', icon: 'code', link: '/my-task301' },
 ]
 const bigTaskLinks: Link[] = [
+  { title: 'BigTask02', caption: 'Flex layout design and data modification', icon: 'code', link: '/big-task02' },
   { title: 'BigTask01', caption: 'Reactive UI and Component Encapsulation', icon: 'code', link: '/big-task01' },
 ]
 const chapterLinks = { chap1Links, chap2Links, chap3Links, bigTaskLinks }

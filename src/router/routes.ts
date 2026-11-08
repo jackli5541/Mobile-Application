@@ -4,6 +4,12 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       {
+        path: 'big-task02',
+        name: 'bigTask02',
+        component: () => import('../views/bigTasks/BigTask02.vue'),
+        meta: { title: 'Flex layout design and data modification' },
+      },
+      {
         path: 'chapter204/task204',
         name: 'task204',
         component: () => import('../views/chapter2/Task204Page.vue'),
