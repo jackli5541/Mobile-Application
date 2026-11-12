@@ -32,6 +32,8 @@ const chap2Links: Link[] = [
   { title: 'MyTask207', caption: 'Editable table', icon: 'code', link: '/chapter207/task207' },
 ]
 const chap3Links: Link[] = [
+  { title: 'MyTask303', caption: '编程式导航', icon: 'code', link: '/my-task303' },
+  { title: 'MyTask302', caption: '路由Query和Params参数', icon: 'code', link: '/my-task302' },
   { title: 'MyTask301', caption: 'To use vue-router', icon: 'code', link: '/my-task301' },
 ]
 const bigTaskLinks: Link[] = [

@@ -4,6 +4,51 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       {
+        path: 'my-task303',
+        component: () => import('pages/chapter3/MyTask303.vue'),
+        children: [
+          { path: '', redirect: { name: 'volume' } },
+          {
+            path: 'flight',
+            name: 'flight',
+            meta: { title: 'Flight' },
+            component: () => import('pages/chapter3/MyFlight303.vue'),
+          },
+          {
+            path: 'volume',
+            name: 'volume',
+            meta: { title: 'Volume' },
+            component: () => import('pages/chapter3/MyVolume303.vue'),
+          },
+        ],
+      },
+      {
+        path: 'my-task302',
+        component: () => import('pages/chapter3/MyTask302.vue'),
+        children: [
+          { path: '', name: 'task302Default', redirect: { name: 'news' } },
+          {
+            path: 'news',
+            name: 'news',
+            meta: { title: 'MyNews302' },
+            component: () => import('pages/chapter3/MyNews302.vue'),
+          },
+          {
+            path: 'about',
+            name: 'about',
+            meta: { title: 'AboutMe' },
+            component: () => import('pages/chapter3/AboutMe302.vue'),
+          },
+          {
+            path: 'me/:id/:name/:age/:login?',
+            name: 'info',
+            props: true,
+            meta: { title: 'Profile' },
+            component: () => import('pages/chapter3/MyProfile302.vue'),
+          },
+        ],
+      },
+      {
         path: 'big-task02',
         name: 'bigTask02',
         component: () => import('../views/bigTasks/BigTask02.vue'),
